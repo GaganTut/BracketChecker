@@ -10,13 +10,13 @@ const openBracks = '({[<';
 const closBracks = ')}]>';
 
 const brackCheck = (stringData) => {
-  let unMatched = [];
+  let unMatched = '';
   for (let i = 0; i < stringData.length; i++) {
     if (openBracks.indexOf(stringData[i]) > -1) {
-      unMatched.push(stringData[i]);
+      unMatched += stringData[i];
     } else if (closBracks.indexOf(stringData[i]) > -1) {
-      if (brackets[unMatched[unMatched.length - 1]] === stringData[i]) {
-        unMatched.pop();
+      if (brackets[unMatched.slice(-1)] === stringData[i]) {
+        unMatched = unMatched.slice(0, -1);
       } else {
         return false;
       }
